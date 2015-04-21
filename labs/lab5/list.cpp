@@ -65,12 +65,12 @@ void List<T>::push_back(T element) {
 
 template <typename T>
 T List<T>::peek_back() {
-
+       return tail->data
 }
 
 template <typename T>
 void List<T>::pop_back() {
-
+        
 }
 
 template <typename T>

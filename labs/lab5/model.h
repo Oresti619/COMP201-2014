@@ -6,8 +6,8 @@
 enum Direction { UP, DOWN, LEFT, RIGHT, DEAD };
 
 typedef struct {
-    unsigned int x;
-    unsigned int y;
+     int x;
+     int y;
 } Coordinate;
 
 // The model manages the state of the game
@@ -19,7 +19,7 @@ public:
     ~Model();
     // Which way should the snake face?
     void go(Direction d);
-    // Move foward one
+    // Move forward one
     void crawl();
     // Is the game over?
     bool gameOver();
