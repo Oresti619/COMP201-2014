@@ -42,8 +42,13 @@ private:
     // What's the height?
     int height;
     // What'd we flip last?
-    int lastRow;
-    int lastColumn;
+    int lastrow;
+	int prevcol;
+	int lastcolumn;
+	int lastcol;
+	int prevrow;
+	int lastRow;
+	int lastColumn;
     State state;
 };
 

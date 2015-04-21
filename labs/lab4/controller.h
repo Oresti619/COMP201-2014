@@ -7,12 +7,12 @@
 // Handle input
 class Controller {
 public:
-    Controller();
-    ~Controller();
-    // Event loop
-    void loop();
+	Controller();
+	~Controller();
+	// Event loop
+	void loop();
 private:
-    Model * model;
-    View * view;
+	Model * model;
+	View * view;
 };
 #endif

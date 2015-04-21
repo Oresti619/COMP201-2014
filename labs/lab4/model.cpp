@@ -67,23 +67,41 @@ bool Model::matched(int row, int column) {
     return true;
 }
 // TODO: Flip a cell
-void Model::flip(int row, int column) {
-    // If the row and column are not valid, break out and don't do anything
-    if (!valid(row, column)) { return; }
-    visible[row][column] = grid[row][column];
+void Model::flip(int row, int col) {
+	// If the row and column are not valid, break out and don't do anything
+	if (!valid(row, col)) { return; }
+	if ((row == lastrow) && (col == lastcolumn)) { return; }
+	if ((row == prevrow) && (col == prevcol)) { return; }
+	switch (state)
+	{
+	case NO_MATCH:
+		visible[lastrow][lastcolumn] = '_';
+		visible[prevrow][prevcol] = '_';
+		lastrow = -1;
+		lastcolumn = -1;
+		prevrow = -1;
+		prevcol = -1;
+	case INIT:
+		visible[row][col] = grid[row][col];
+		lastrow = row;
+		lastcolumn = col;
+		state = FIRST;
+		break;
+	case FIRST:
+		visible[row][col] = grid[row][col];
+		prevrow = row;
+		prevcol = col;
+		if (grid[lastrow][lastcolumn] != grid[prevrow][prevcol])
+		{
+			state = NO_MATCH;
+		}
+		else
+		{
+			state = INIT;
+		}
+		break;
+	}
 }
-// If everything is visible, then it's game over
-bool Model::gameOver() {
-    // Assume the game is over
-    bool isOver = true;
-    // Loop through the grid and see if any element is not visible
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            if (visible[i][j] == '_') {
-                isOver = false;
-            }
-        }
-    }
     
     if (isOver) {
         // Set a nice game over message
